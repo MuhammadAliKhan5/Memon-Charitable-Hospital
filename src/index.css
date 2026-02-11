@@ -1,57 +1,37 @@
 @import "tailwindcss";
 
 @layer components {
-  /* Add these if missing */
-.btn-primary {
-  @apply bg-gradient-to-r from-[#c2272c] to-[#ff6b6b] text-white px-6 py-3 rounded-full font-semibold hover:opacity-90 transition-all duration-300 flex items-center gap-2 shadow-lg;
-}
+  /* --- Buttons --- */
+  .btn-primary {
+    @apply bg-gradient-to-r from-[#c2272c] to-[#ff6b6b] text-white px-6 py-3 rounded-full font-semibold hover:opacity-90 transition-all duration-300 flex items-center gap-2 shadow-lg;
+  }
 
-.btn-secondary {
-  @apply bg-white text-[#c2272c] border-2 border-[#c2272c] px-6 py-3 rounded-full font-semibold hover:bg-[#c2272c] hover:text-white transition-all duration-300 flex items-center gap-2 shadow-lg;
-}
+  .btn-secondary {
+    @apply bg-white text-[#c2272c] border-2 border-[#c2272c] px-6 py-3 rounded-full font-semibold hover:bg-[#c2272c] hover:text-white transition-all duration-300 flex items-center gap-2 shadow-lg;
+  }
 
-.btn-lg {
-  @apply px-8 py-4 text-lg;
-}
+  .btn-lg {
+    @apply px-8 py-4 text-lg;
+  }
 
-.text-gradient {
-  @apply bg-gradient-to-r from-[#c2272c] to-[#ff6b6b] bg-clip-text text-transparent;
-}
-
-.bg-gradient-red {
-  @apply bg-gradient-to-r from-[#c2272c] to-[#ff6b6b];
-}
-
-.container-custom {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-}
-
-.pulse-dot {
-  animation: pulse 2s infinite;
-}
-
-.floating-emergency-badge {
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
+  /* --- Layout & Utility --- */
   .container-custom {
-    @apply max-w-7xl mx-auto px-6 lg:px-8; /* Increased padding */
+    @apply max-w-7xl mx-auto px-6 lg:px-8;
   }
 
   .section-padding {
-    @apply py-16 px-6 lg:px-8; /* Section padding */
+    @apply py-16 px-6 lg:px-8;
   }
 
+  .text-gradient {
+    @apply bg-gradient-to-r from-[#c2272c] to-[#ff6b6b] bg-clip-text text-transparent;
+  }
+
+  .bg-gradient-red {
+    @apply bg-gradient-to-r from-[#c2272c] to-[#ff6b6b];
+  }
+
+  /* --- Cards --- */
   .service-card {
     @apply bg-white rounded-2xl p-6 border border-gray-200 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-[#c2272c]/30 relative overflow-hidden;
   }
@@ -64,12 +44,43 @@
     @apply h-full;
   }
 
+  /* FIXED: Removed 'group' from @apply here */
   .logo-card {
-    @apply bg-white p-4 rounded-xl shadow-md hover:shadow-xl border-2 border-gray-100 hover:border-[#c2272c]/30 transition-all duration-300 group flex-shrink-0;
+    @apply bg-white p-4 rounded-xl shadow-md hover:shadow-xl border-2 border-gray-100 hover:border-[#c2272c]/30 transition-all duration-300 flex-shrink-0;
+  }
+
+  /* --- Animation Classes --- */
+  .animate-fade-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .animate-slide-right {
+    animation: slideInRight 0.8s ease-out forwards;
+  }
+
+  .pulse-dot {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .floating-emergency-badge {
+    animation: float 3s ease-in-out infinite;
   }
 }
 
-/* Custom animations */
+/* --- Global Elements --- */
+body {
+  @apply overflow-x-hidden;
+}
+
+section {
+  @apply py-16 px-6 lg:px-8;
+}
+
+button, a.btn-primary, a.btn-secondary {
+  @apply transition-all duration-300;
+}
+
+/* --- Keyframes --- */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -113,45 +124,11 @@
 }
 
 @keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-180px * 8));
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-180px * 8)); }
 }
 
-.animate-fade-up {
-  animation: fadeInUp 0.8s ease-out forwards;
-}
-
-.animate-slide-right {
-  animation: slideInRight 0.8s ease-out forwards;
-}
-
-.pulse-dot {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-.floating-emergency-badge {
-  animation: float 3s ease-in-out infinite;
-}
-
-/* Add space/gap from corners */
-body {
-  @apply overflow-x-hidden;
-}
-
-section {
-  @apply py-16 px-6 lg:px-8;
-}
-
-/* Ensure buttons are visible */
-button, a.btn-primary, a.btn-secondary {
-  @apply transition-all duration-300;
-}
-
-/* Custom scrollbar */
+/* --- Custom Scrollbar --- */
 ::-webkit-scrollbar {
   width: 10px;
 }

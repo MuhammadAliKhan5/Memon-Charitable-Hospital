@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { MapPin, Mail, ChevronDown, Heart, Menu, X } from 'lucide-react';
 
 const Header = () => {
@@ -6,35 +7,27 @@ const Header = () => {
   const [isSpecialtiesOpen, setIsSpecialtiesOpen] = useState(false);
 
   const specialities = [
-    'GENERAL PHYSICIAN',
-    'GENERAL SURGEON',
-    'GESTROENTEROLOGIST',
-    'GYNAECOLOGIST',
-    'EYE SPECIALIST',
-    'DIABETOLOGIST',
-    'CHEST PHYSICIAN',
-    'CARDIOLOGIST',
-    'SKIN SPECIALIST',
-    'ORTHOPEDIC SURGEON',
-    'CHILD SPECIALIST'
+    'General Physician', 'General Surgeon', 'Gestroenterologist',
+    'Gynaecologist', 'Eye Specialist', 'Diabetologist',
+    'Chest Physician', 'Cardiologist', 'Skin Specialist',
+    'Orthopedic Surgeon', 'Child Specialist'
   ];
 
+  const closeMenu = () => setIsMobileMenuOpen(false);
+
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-lg">
+    <header className="relative z-50 bg-white shadow-lg">
       {/* Top Bar */}
       <div className="bg-gradient-to-br from-[#c2272c] to-[#a81e22] py-2">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-2 text-sm text-white">
             <div className="flex items-center gap-2">
-              <MapPin size={16} />
+              <MapPin size={14} />
               <span>Nishat Chowk, Domanwa Road, Hyderabad</span>
             </div>
             <div className="flex items-center gap-4">
-              <a 
-                href="mailto:hospitalmemoncharitable@gmail.com"
-                className="flex items-center gap-2 hover:opacity-90 transition"
-              >
-                <Mail size={16} />
+              <a href="mailto:hospitalmemoncharitable@gmail.com" className="flex items-center gap-2 hover:opacity-90 transition">
+                <Mail size={14} />
                 <span className="hidden md:inline">hospitalmemoncharitable@gmail.com</span>
               </a>
               <span className="bg-white/20 px-4 py-1 rounded-full font-semibold">
@@ -46,122 +39,95 @@ const Header = () => {
       </div>
 
       {/* Main Navigation */}
-      <nav className="py-4">
+      <nav className="py-2 md:py-4">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex justify-between items-center">
-            {/* Logo */}
-            <div className="flex items-center">
-              <img 
-                src="/hospital-logo.png" 
-                alt="Memon Charitable Hospital" 
-                className="w-12 h-12 mr-3"
-              />
-              <div>
-                <div className="text-xl font-black text-gray-900">Memon Charitable</div>
-                <div className="text-sm text-gray-600 font-medium">Hospital & Research Center</div>
+
+            {/* LEFT: LOGO */}
+            <div className="flex-shrink-0">
+              <Link to="/" className="flex items-center group" onClick={closeMenu}>
+                <img
+                  src="/hospital-logo.png"
+                  alt="Memon Charitable Hospital"
+                  className="w-16 h-16 md:w-20 md:h-20 object-contain transition-transform duration-300 group-hover:scale-105"
+                />
+              </Link>
+            </div>
+
+            {/* CENTER: MENUS */}
+            <div className="hidden lg:flex flex-grow justify-center">
+              <div className="flex items-center space-x-6 xl:space-x-8">
+                <Link to="/" className="font-bold text-gray-700 hover:text-[#c2272c] transition-colors text-sm uppercase tracking-wide">Home</Link>
+                <Link to="/about" className="font-bold text-gray-700 hover:text-[#c2272c] transition-colors text-sm uppercase tracking-wide">About</Link>
+
+                {/* Specialities Dropdown */}
+                <div className="relative group">
+                  <button className="font-bold text-gray-700 hover:text-[#c2272c] transition-colors flex items-center gap-1 text-sm uppercase tracking-wide">
+                    Specialities
+                    <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
+                  </button>
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-white rounded-lg shadow-xl min-w-[240px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border-t-4 border-[#c2272c] z-50">
+                    {specialities.map((item, index) => (
+                      <Link
+                        key={index}
+                        to={`/speciality/${item.toLowerCase().replace(/\s+/g, '-')}`}
+                        className="block px-6 py-3 hover:bg-red-50 hover:text-[#c2272c] transition-all duration-200 border-b border-gray-100 last:border-b-0 text-sm font-medium"
+                      >
+                        {item}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+
+                <Link to="/events" className="font-bold text-gray-700 hover:text-[#c2272c] transition-colors text-sm uppercase tracking-wide">News</Link>
+                <Link to="/gallery" className="font-bold text-gray-700 hover:text-[#c2272c] transition-colors text-sm uppercase tracking-wide">Gallery</Link>
+                <Link to="/careers" className="font-bold text-gray-700 hover:text-[#c2272c] transition-colors text-sm uppercase tracking-wide">Career</Link>
+                <Link to="/contact" className="font-bold text-gray-700 hover:text-[#c2272c] transition-colors text-sm uppercase tracking-wide">Contact</Link>
               </div>
             </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-8">
-              <a href="#" className="font-semibold text-gray-700 hover:text-[#c2272c] transition-colors">
-                Home
-              </a>
-              <a href="/about.html" className="font-semibold text-gray-700 hover:text-[#c2272c] transition-colors">
-                About
-              </a>
-              
-              {/* Specialities Dropdown */}
-              <div className="relative group">
-                <button className="font-semibold text-gray-700 hover:text-[#c2272c] transition-colors flex items-center gap-1">
-                  Speciality / Doctors
-                  <ChevronDown size={16} className="group-hover:rotate-180 transition-transform" />
-                </button>
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-white rounded-lg shadow-xl min-w-[280px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border-t-4 border-[#c2272c] z-50">
-                  {specialities.map((item, index) => (
-                    <div 
-                      key={index}
-                      className="px-6 py-3 hover:bg-red-50 hover:text-[#c2272c] transition-all duration-200 border-b border-gray-100 last:border-b-0 cursor-pointer"
-                    >
-                      {item}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <a href="/newevents.html" className="font-semibold text-gray-700 hover:text-[#c2272c] transition-colors">
-                New Events
-              </a>
-              <a href="/career.html" className="font-semibold text-gray-700 hover:text-[#c2272c] transition-colors">
-                Career
-              </a>
-              <a href="/contact.html" className="font-semibold text-gray-700 hover:text-[#c2272c] transition-colors">
-                Contact
-              </a>
-              <a href="#" className="bg-gradient-to-br from-[#c2272c] to-[#d9261c] text-white px-6 py-2.5 rounded-xl font-semibold transition-all duration-300 inline-flex items-center justify-center gap-2 shadow-lg shadow-[#c2272c]/20 hover:shadow-xl hover:shadow-[#c2272c]/30 hover:-translate-y-0.5">
-                <Heart size={16} />
+            {/* RIGHT: DONATE BUTTON */}
+            <div className="hidden lg:flex flex-shrink-0">
+              <Link to="/donate" className="bg-gradient-to-br from-[#c2272c] to-[#d9261c] text-white px-5 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-300 inline-flex items-center justify-center gap-2 shadow-lg hover:shadow-red-200 hover:-translate-y-0.5 whitespace-nowrap">
+                <Heart size={14} />
                 Donate Now
-              </a>
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}
-            <button 
-              className="lg:hidden p-2"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            <button className="lg:hidden p-2 text-[#c2272c]" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+              {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
 
           {/* Mobile Menu */}
           {isMobileMenuOpen && (
-            <div className="lg:hidden mt-4 bg-white rounded-xl shadow-xl p-6 border border-gray-200">
+            <div className="lg:hidden mt-4 bg-white rounded-2xl shadow-2xl p-6 border border-gray-100 animate-in fade-in slide-in-from-top-4 duration-300">
               <div className="space-y-4">
-                <a href="#" className="block py-2 text-gray-700 hover:text-[#c2272c] font-semibold">
-                  Home
-                </a>
-                <a href="/about.html" className="block py-2 text-gray-700 hover:text-[#c2272c] font-semibold">
-                  About
-                </a>
-                
-                {/* Mobile Specialities Dropdown */}
+                <Link to="/" onClick={closeMenu} className="block py-2 text-gray-800 hover:text-[#c2272c] font-bold border-b border-gray-50">HOME</Link>
+                <Link to="/about" onClick={closeMenu} className="block py-2 text-gray-800 hover:text-[#c2272c] font-bold border-b border-gray-50">ABOUT</Link>
                 <div>
-                  <button 
-                    onClick={() => setIsSpecialtiesOpen(!isSpecialtiesOpen)}
-                    className="flex items-center justify-between w-full py-2 text-gray-700 hover:text-[#c2272c] font-semibold"
-                  >
-                    Speciality / Doctors
+                  <button onClick={() => setIsSpecialtiesOpen(!isSpecialtiesOpen)} className="flex items-center justify-between w-full py-2 text-gray-800 hover:text-[#c2272c] font-bold border-b border-gray-50">
+                    SPECIALITIES
                     <ChevronDown size={16} className={`transition-transform ${isSpecialtiesOpen ? 'rotate-180' : ''}`} />
                   </button>
-                  
                   {isSpecialtiesOpen && (
-                    <div className="mt-2 ml-4 space-y-2 border-l-2 border-[#c2272c] pl-4">
+                    <div className="mt-2 ml-4 space-y-2 border-l-2 border-[#c2272c] pl-4 bg-gray-50 rounded-r-lg">
                       {specialities.map((item, index) => (
-                        <a 
-                          key={index}
-                          href="#" 
-                          className="block py-2 text-gray-600 hover:text-[#c2272c]"
-                        >
+                        <Link key={index} to={`/speciality/${item.toLowerCase().replace(/\s+/g, '-')}`} onClick={closeMenu} className="block py-2 text-gray-600 text-sm hover:text-[#c2272c]">
                           {item}
-                        </a>
+                        </Link>
                       ))}
                     </div>
                   )}
                 </div>
-
-                <a href="/newevents.html" className="block py-2 text-gray-700 hover:text-[#c2272c] font-semibold">
-                  New Events
-                </a>
-                <a href="/career.html" className="block py-2 text-gray-700 hover:text-[#c2272c] font-semibold">
-                  Career
-                </a>
-                <a href="/contact.html" className="block py-2 text-gray-700 hover:text-[#c2272c] font-semibold">
-                  Contact
-                </a>
-                <a href="#" className="bg-gradient-to-br from-[#c2272c] to-[#d9261c] text-white px-6 py-2.5 rounded-xl font-semibold transition-all duration-300 inline-flex items-center justify-center gap-2 shadow-lg shadow-[#c2272c]/20 hover:shadow-xl hover:shadow-[#c2272c]/30 w-full justify-center mt-4">
-                  <Heart size={16} />
-                  Donate Now
-                </a>
+                <Link to="/events" onClick={closeMenu} className="block py-2 text-gray-800 hover:text-[#c2272c] font-bold border-b border-gray-50">NEWS</Link>
+                <Link to="/gallery" onClick={closeMenu} className="block py-2 text-gray-800 hover:text-[#c2272c] font-bold border-b border-gray-50">GALLERY</Link>
+                <Link to="/careers" onClick={closeMenu} className="block py-2 text-gray-800 hover:text-[#c2272c] font-bold border-b border-gray-50">CAREER</Link>
+                <Link to="/contact" onClick={closeMenu} className="block py-2 text-gray-800 hover:text-[#c2272c] font-bold border-b border-gray-50">CONTACT</Link>
+                <Link to="/donate" onClick={closeMenu} className="bg-[#c2272c] text-white px-6 py-3 rounded-xl font-bold w-full flex items-center justify-center gap-2 mt-4 shadow-lg shadow-red-200">
+                  <Heart size={16} /> DONATE NOW
+                </Link>
               </div>
             </div>
           )}

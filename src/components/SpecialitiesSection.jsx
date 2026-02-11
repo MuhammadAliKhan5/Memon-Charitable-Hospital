@@ -1,4 +1,4 @@
-import { HeartPulse, Baby, Eye, Heart, Wind, Stethoscope, ChevronRight } from 'lucide-react';
+import { HeartPulse, Baby, Eye, Heart, Wind, Stethoscope, ChevronRight, CheckCircle2 } from 'lucide-react';
 
 const SpecialtiesSection = () => {
   const specialties = [
@@ -43,20 +43,65 @@ const SpecialtiesSection = () => {
   return (
     <section className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        {/* Header */}
+        
+        {/* --- HEADER --- */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-3 mb-4">
             <div className="w-12 h-1.5 bg-[#c2272c] rounded-full"></div>
             <span className="text-[#c2272c] font-bold uppercase tracking-wider text-base">Our Services</span>
             <div className="w-12 h-1.5 bg-[#c2272c] rounded-full"></div>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Medical Specialties</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Featured Specialties</h2>
           <p className="text-gray-600 text-lg max-w-3xl mx-auto">
-            Comprehensive healthcare services across various medical specialties with expert professionals
+            Discover our specialized departments providing advanced healthcare services with expert staff and modern facilities.
           </p>
         </div>
 
-        {/* Specialties Grid */}
+        {/* --- NEW EMERGENCY CARE CONTENT (FROM IMAGE) --- */}
+        <div className="flex flex-col lg:flex-row items-center gap-12 mb-20 bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+          <div className="w-full lg:w-1/2 space-y-6">
+            <span className="text-[#c2272c] font-bold uppercase tracking-widest text-sm">Emergency Medicine</span>
+            <h3 className="text-xl md:text-3xl font-bold text-gray-900 leading-tight">
+              24/7 Emergency Care Services
+            </h3>
+            <p className="text-gray-600 text-lg leading-relaxed">
+              Our Emergency Department is equipped with advanced life support systems and staffed by trauma care specialists ready around the clock.
+            </p>
+            
+            <ul className="space-y-4">
+              {[
+                "24/7 Emergency Response",
+                "Advanced Life Support",
+                "Trauma Care Specialists"
+              ].map((item, i) => (
+                <li key={i} className="flex items-center gap-3 text-gray-700 font-medium">
+                  <CheckCircle2 className="text-[#c2272c]" size={22} />
+                  {item}
+                </li>
+              ))}
+            </ul>
+
+            <button className="bg-[#c2272c] hover:bg-[#a11f23] text-white px-8 py-3.5 rounded-full font-bold transition-all duration-300 flex items-center gap-2 group">
+              Learn More 
+              <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+
+          <div className="w-full lg:w-1/2 relative">
+             <div className="rounded-2xl overflow-hidden shadow-2xl border-2 border-red-100">
+                {/* INSERT IMAGE PATH HERE */}
+                <img 
+                  src="specialities.jpg" 
+                  alt="Emergency Medical Team" 
+                  className="w-full h-full object-cover"
+                />
+             </div>
+             {/* Decorative Frame Element */}
+             <div className="absolute -top-4 -right-4 w-full h-full border-2 border-[#c2272c]/20 rounded-2xl -z-10 hidden md:block"></div>
+          </div>
+        </div>
+
+        {/* --- SPECIALTIES GRID --- */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {specialties.map((specialty, index) => (
             <div 
