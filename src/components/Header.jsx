@@ -6,14 +6,20 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSpecialtiesOpen, setIsSpecialtiesOpen] = useState(false);
 
+  // Complete list of specialties based on hospital data [cite: 3, 23, 34, 37]
   const specialities = [
     'General Physician', 'General Surgeon', 'Gestroenterologist',
     'Gynaecologist', 'Eye Specialist', 'Diabetologist',
     'Chest Physician', 'Cardiologist', 'Skin Specialist',
-    'Orthopedic Surgeon', 'Child Specialist'
+    'Orthopedic Surgeon', 'Child Specialist', 'Sonologist',
+    'ENT Specialist', 'Urologist',
+    'Plastic Surgeon', 'Nephrologist', 'Physiotherapy'
   ];
 
-  const closeMenu = () => setIsMobileMenuOpen(false);
+  const closeMenu = () => {
+    setIsMobileMenuOpen(false);
+    setIsSpecialtiesOpen(false);
+  };
 
   return (
     <header className="relative z-50 bg-white shadow-lg">
@@ -66,11 +72,13 @@ const Header = () => {
                     Specialities
                     <ChevronDown size={14} className="group-hover:rotate-180 transition-transform" />
                   </button>
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-white rounded-lg shadow-xl min-w-[240px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border-t-4 border-[#c2272c] z-50">
+                  {/* Dropdown Menu - Scrollable for many items */}
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-white rounded-lg shadow-xl min-w-[260px] max-h-[400px] overflow-y-auto opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border-t-4 border-[#c2272c] z-50">
                     {specialities.map((item, index) => (
                       <Link
                         key={index}
                         to={`/speciality/${item.toLowerCase().replace(/\s+/g, '-')}`}
+                        onClick={closeMenu}
                         className="block px-6 py-3 hover:bg-red-50 hover:text-[#c2272c] transition-all duration-200 border-b border-gray-100 last:border-b-0 text-sm font-medium"
                       >
                         {item}
@@ -102,7 +110,7 @@ const Header = () => {
 
           {/* Mobile Menu */}
           {isMobileMenuOpen && (
-            <div className="lg:hidden mt-4 bg-white rounded-2xl shadow-2xl p-6 border border-gray-100 animate-in fade-in slide-in-from-top-4 duration-300">
+            <div className="lg:hidden mt-4 bg-white rounded-2xl shadow-2xl p-6 border border-gray-100 animate-in fade-in slide-in-from-top-4 duration-300 max-h-[80vh] overflow-y-auto">
               <div className="space-y-4">
                 <Link to="/" onClick={closeMenu} className="block py-2 text-gray-800 hover:text-[#c2272c] font-bold border-b border-gray-50">HOME</Link>
                 <Link to="/about" onClick={closeMenu} className="block py-2 text-gray-800 hover:text-[#c2272c] font-bold border-b border-gray-50">ABOUT</Link>
