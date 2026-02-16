@@ -20,22 +20,35 @@ const Gastroenterologist = () => {
           <div className="w-20 h-1 bg-[#c2272c] mx-auto"></div>
         </div>
       </header>
+
       <section className="py-20 container mx-auto px-6 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {doctors.map((doc, i) => (
           <div key={i} className="p-8 border border-gray-100 rounded-[2rem] hover:shadow-2xl transition-all group hover:border-[#c2272c]" data-aos="fade-up">
+            
             <div className="flex items-center gap-4 mb-6">
               <div className="p-4 bg-red-50 text-[#c2272c] rounded-2xl group-hover:bg-[#c2272c] group-hover:text-white transition-colors">
                 <User size={24} />
               </div>
               <h3 className="font-bold text-xl text-gray-900">{doc.name}</h3>
             </div>
+
             <div className="space-y-3 mb-8 text-gray-600">
-              <p className="flex items-center gap-2 font-medium tracking-tight"><Calendar size={18} className="text-[#c2272c]"/> {doc.day}</p>
-              <p className="flex items-center gap-2 font-medium tracking-tight"><Clock size={18} className="text-[#c2272c]"/> {doc.timing}</p>
+              <p className="flex items-center gap-2 font-medium tracking-tight">
+                <Calendar size={18} className="text-[#c2272c]" /> {doc.day}
+              </p>
+              <p className="flex items-center gap-2 font-medium tracking-tight">
+                <Clock size={18} className="text-[#c2272c]" /> {doc.timing}
+              </p>
             </div>
-            <a href={`tel:${doc.contact}`} className="flex items-center justify-center gap-2 w-full py-4 bg-gray-900 text-white rounded-2xl font-bold hover:bg-[#c2272c] transition-all">
-              <Phone size={18}/> {doc.contact}
+
+            {/* ✅ UPDATED BUTTON */}
+            <a
+              href={`tel:${doc.contact}`}
+              className="flex items-center justify-center gap-2 w-full py-4 bg-[#c2272c] text-white rounded-2xl font-bold hover:bg-gray-900 transition-all duration-300"
+            >
+              <Phone size={18} /> {doc.contact}
             </a>
+
           </div>
         ))}
       </section>

@@ -1,59 +1,41 @@
 import React, { useEffect } from 'react';
-import { Phone, Sparkle, Calendar, Clock } from 'lucide-react';
+import { Phone, Calendar, Clock, User } from 'lucide-react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 const PlasticSurgeon = () => {
-  useEffect(() => {
-    AOS.init({ duration: 800, once: true });
-  }, []);
+  useEffect(() => { AOS.init({ duration: 800, once: true }); }, []);
+
+  const doctors = [{ name: "Dr. Samra Irshad", day: "Saturday", timing: "3pm to 5pm", contact: "0312-3021505" }];
 
   return (
     <div className="bg-white min-h-screen">
-      <header className="relative h-[300px] bg-gray-900 flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-red-900/10"></div>
-        <div className="relative z-10 text-center text-white px-4">
-          <Sparkle size={48} className="text-[#c2272c] mx-auto mb-4 opacity-90" />
-          <h1 className="text-4xl md:text-5xl font-black uppercase tracking-wider" data-aos="fade-down">
-            Plastic Surgeon
-          </h1>
-          <div className="w-20 h-1 bg-[#c2272c] mx-auto mt-4"></div>
-          <p className="mt-4 text-gray-400 font-medium uppercase text-xs tracking-[0.3em]">Reconstructive & Cosmetic Excellence</p>
+      <header className="relative h-[350px] bg-gray-900 flex items-center justify-center">
+        <img src="/slider2.jpg" className="absolute inset-0 w-full h-full object-cover opacity-40" alt="Plastic Surgeon" />
+        <div className="relative z-10 text-center text-white">
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4" data-aos="fade-down">Plastic Surgeon</h1>
+          <div className="w-20 h-1 bg-[#c2272c] mx-auto" data-aos="zoom-in" data-aos-delay="300"></div>
         </div>
       </header>
 
-      <section className="py-20 container mx-auto px-6 flex justify-center">
-        <div 
-          className="w-full max-w-lg group bg-gray-50 rounded-[3rem] p-10 border border-transparent hover:border-[#c2272c] hover:bg-white hover:shadow-2xl transition-all duration-500 text-center" 
-          data-aos="zoom-in"
-        >
-          <div className="mb-8">
-            <h3 className="text-3xl font-bold text-gray-900 group-hover:text-[#c2272c] transition-colors duration-300">
-              Dr. Samra Irshad
-            </h3>
-            <div className="mt-3 inline-block px-4 py-1 bg-[#c2272c] text-white rounded-full text-[10px] font-black uppercase tracking-widest">
-              Consultant Plastic Surgeon
+      <section className="py-20 container mx-auto px-6 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {doctors.map((doc, i) => (
+          <div key={i} className="p-8 border border-gray-100 rounded-[2rem] hover:shadow-2xl transition-all group hover:border-[#c2272c]" data-aos="fade-up">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="p-4 bg-red-50 text-[#c2272c] rounded-2xl group-hover:bg-[#c2272c] group-hover:text-white transition-colors">
+                <User size={24} />
+              </div>
+              <h3 className="font-bold text-xl text-gray-900">{doc.name}</h3>
             </div>
+            <div className="space-y-3 mb-8 text-gray-600 font-medium">
+              <p className="flex items-center gap-2"><Calendar size={18} className="text-[#c2272c]"/> {doc.day}</p>
+              <p className="flex items-center gap-2"><Clock size={18} className="text-[#c2272c]"/> {doc.timing}</p>
+            </div>
+            <a href={`tel:${doc.contact}`} className="flex items-center justify-center gap-2 w-full py-4 bg-[#c2272c] text-white rounded-2xl font-bold hover:bg-gray-900 transition-all">
+              <Phone size={18}/> {doc.contact}
+            </a>
           </div>
-          
-          <div className="space-y-6 mb-10 inline-block text-left">
-            <div className="flex items-center gap-4 text-gray-600">
-              <Calendar size={22} className="text-[#c2272c]" />
-              <span className="text-lg font-bold uppercase tracking-tight">Saturday</span>
-            </div>
-            <div className="flex items-center gap-4 text-gray-600">
-              <Clock size={22} className="text-[#c2272c]" />
-              <span className="text-lg font-medium">3pm to 5pm</span>
-            </div>
-          </div>
-
-          <a 
-            href="tel:0312-3021505" 
-            className="flex items-center justify-center gap-3 w-full py-5 bg-gray-900 text-white rounded-2xl font-black text-xl hover:bg-[#c2272c] transition-all transform hover:-translate-y-1 shadow-lg"
-          >
-            <Phone size={24} /> 0312-3021505
-          </a>
-        </div>
+        ))}
       </section>
     </div>
   );

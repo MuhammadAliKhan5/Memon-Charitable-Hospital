@@ -1,64 +1,44 @@
 import React, { useEffect } from 'react';
-import { Phone, Activity, Calendar, Clock, Accessibility } from 'lucide-react';
+import { Phone, Calendar, Clock, User } from 'lucide-react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-const Physiotherapy = () => {
-  useEffect(() => {
-    AOS.init({ duration: 800, once: true });
-  }, []);
+const Physiotherapist = () => {
+  useEffect(() => { AOS.init({ duration: 800, once: true }); }, []);
 
-  const staff = [
-    { name: "Dr. Taj Fareed", contact: "0312-3832928" },
-    { name: "Dr. Priya Khan", contact: "0312-1380407" }
-  ];
+  const doctors = [{ name: "Dr. Hina Sheikh", day: "Monday to Saturday", timing: "4pm to 7pm", contact: "0300-7654321" }];
 
   return (
     <div className="bg-white min-h-screen">
-      {/* Header Section */}
-      <header className="relative h-[300px] bg-[#c2272c] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-black/10"></div>
+      <header className="relative h-[350px] bg-gray-900 flex items-center justify-center">
+        <img src="/slider2.jpg" className="absolute inset-0 w-full h-full object-cover opacity-40" alt="Physiotherapist" />
         <div className="relative z-10 text-center text-white">
-          <Accessibility size={48} className="mx-auto mb-4 opacity-80" />
-          <h1 className="text-4xl md:text-5xl font-black uppercase italic" data-aos="zoom-in">
-            Physiotherapy
-          </h1>
-          <div className="w-16 h-1 bg-white mx-auto mt-2"></div>
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4" data-aos="fade-down">Physiotherapist</h1>
+          <div className="w-20 h-1 bg-[#c2272c] mx-auto" data-aos="zoom-in" data-aos-delay="300"></div>
         </div>
       </header>
 
-      {/* Staff Grid Section */}
-      <section className="py-20 container mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {staff.map((doc, i) => (
-            <div key={i} className="bg-gray-50 rounded-[3rem] p-8 shadow-sm hover:shadow-2xl transition-all border-b-8 border-transparent hover:border-gray-900" data-aos="fade-up" data-aos-delay={i * 100}>
-              <div className="mb-8">
-                <h3 className="text-2xl font-bold text-gray-900 min-h-[3.5rem]">{doc.name}</h3>
-                <div className="mt-4 inline-block px-4 py-1 bg-red-50 text-[#c2272c] rounded-full text-[10px] font-black uppercase tracking-tighter">
-                  Physical Therapy Specialist
-                </div>
+      <section className="py-20 container mx-auto px-6 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {doctors.map((doc, i) => (
+          <div key={i} className="p-8 border border-gray-100 rounded-[2rem] hover:shadow-2xl transition-all group hover:border-[#c2272c]" data-aos="fade-up">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="p-4 bg-red-50 text-[#c2272c] rounded-2xl group-hover:bg-[#c2272c] group-hover:text-white transition-colors">
+                <User size={24} />
               </div>
-              
-              <div className="space-y-4 mb-8">
-                <div className="flex items-center gap-3 text-gray-500">
-                  <Calendar size={18} className="text-[#c2272c]" />
-                  <span className="text-sm font-bold uppercase">Monday to Saturday</span>
-                </div>
-                <div className="flex items-center gap-3 text-gray-500">
-                  <Clock size={18} className="text-[#c2272c]" />
-                  <span className="text-sm font-medium">5pm to 9pm</span>
-                </div>
-              </div>
-
-              <a href={`tel:${doc.contact}`} className="flex items-center justify-center gap-2 w-full py-4 bg-gray-900 text-white rounded-2xl font-bold hover:bg-[#c2272c] transition-colors shadow-lg">
-                <Phone size={18} /> {doc.contact}
-              </a>
+              <h3 className="font-bold text-xl text-gray-900">{doc.name}</h3>
             </div>
-          ))}
-        </div>
+            <div className="space-y-3 mb-8 text-gray-600 font-medium">
+              <p className="flex items-center gap-2"><Calendar size={18} className="text-[#c2272c]"/> {doc.day}</p>
+              <p className="flex items-center gap-2"><Clock size={18} className="text-[#c2272c]"/> {doc.timing}</p>
+            </div>
+            <a href={`tel:${doc.contact}`} className="flex items-center justify-center gap-2 w-full py-4 bg-[#c2272c] text-white rounded-2xl font-bold hover:bg-gray-900 transition-all">
+              <Phone size={18}/> {doc.contact}
+            </a>
+          </div>
+        ))}
       </section>
     </div>
   );
 };
 
-export default Physiotherapy;
+export default Physiotherapist;

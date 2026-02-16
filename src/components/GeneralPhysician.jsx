@@ -9,28 +9,56 @@ const GeneralPhysician = () => {
     { name: "Dr. Ghulam Fareed Memon", day: "Friday", timing: "03pm to 5pm", contact: "0333-2694922" },
     { name: "Dr. Kamran Qureshi", day: "Saturday / Monday", timing: "12pm to 02pm / 6pm to 8pm", contact: "0333-2621545" },
     { name: "Dr. Mujtaba Shah", day: "Tue, Thu, Sat / Sunday", timing: "2pm to 4pm / 04pm to 06pm", contact: "0312-3438946" },
-    { name: "Dr. Adeel Rajpu", day: "Wednesday", timing: "4:30pm to 6:30pm", contact: "0304-8718301" }
+    { name: "Dr. Adeel Rajput", day: "Wednesday", timing: "4:30pm to 6:30pm", contact: "0304-8718301" }
   ];
 
   return (
     <div className="bg-white min-h-screen">
-      <header className="relative h-[300px] bg-gray-900 flex items-center justify-center">
+
+      {/* HERO */}
+      <header className="relative h-[350px] bg-gray-900 flex items-center justify-center">
         <img src="/slider2.jpg" className="absolute inset-0 w-full h-full object-cover opacity-40" alt="Banner" />
-        <h1 className="relative z-10 text-4xl font-bold text-white uppercase tracking-wider" data-aos="fade-down">General Physician</h1>
+        <div className="relative z-10 text-center text-white">
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4" data-aos="fade-down">
+            General Physician
+          </h1>
+          <div className="w-20 h-1 bg-[#c2272c] mx-auto"></div>
+        </div>
       </header>
-      <section className="py-16 container mx-auto px-6 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      {/* DOCTORS */}
+      <section className="py-20 container mx-auto px-6 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {doctors.map((doc, i) => (
-          <div key={i} className="p-6 border rounded-3xl hover:border-[#c2272c] transition-all" data-aos="fade-up">
-            <h3 className="font-bold text-lg mb-4 text-gray-900">{doc.name}</h3>
-            <div className="text-sm text-gray-600 space-y-2 mb-6">
-              <p className="flex items-center gap-2"><Calendar size={14}/> {doc.day}</p>
-              <p className="flex items-center gap-2"><Clock size={14}/> {doc.timing}</p>
+          <div key={i} className="p-8 border border-gray-100 rounded-[2rem] hover:shadow-2xl transition-all group hover:border-[#c2272c]" data-aos="fade-up">
+
+            <div className="flex items-center gap-4 mb-6">
+              <div className="p-4 bg-red-50 text-[#c2272c] rounded-2xl group-hover:bg-[#c2272c] group-hover:text-white transition-colors">
+                <User size={24} />
+              </div>
+              <h3 className="font-bold text-xl text-gray-900">{doc.name}</h3>
             </div>
-            <a href={`tel:${doc.contact}`} className="block text-center py-2 bg-gray-900 text-white rounded-xl font-semibold hover:bg-[#c2272c] transition-colors">{doc.contact}</a>
+
+            <div className="space-y-3 mb-8 text-gray-600">
+              <p className="flex items-center gap-2 font-medium">
+                <Calendar size={18} className="text-[#c2272c]" /> {doc.day}
+              </p>
+              <p className="flex items-center gap-2 font-medium">
+                <Clock size={18} className="text-[#c2272c]" /> {doc.timing}
+              </p>
+            </div>
+
+            <a
+              href={`tel:${doc.contact}`}
+              className="flex items-center justify-center gap-2 w-full py-4 bg-[#c2272c] text-white rounded-2xl font-bold hover:bg-gray-900 transition-all"
+            >
+              <Phone size={18} /> {doc.contact}
+            </a>
+
           </div>
         ))}
       </section>
     </div>
   );
 };
+
 export default GeneralPhysician;

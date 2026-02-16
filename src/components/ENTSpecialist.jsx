@@ -1,34 +1,46 @@
 import React, { useEffect } from 'react';
-import { Phone, Headset } from 'lucide-react';
+import { Phone, Calendar, Clock, User } from 'lucide-react';
 import AOS from 'aos';
+import 'aos/dist/aos.css';
 
-const ENTSpecialist = () => {
-  useEffect(() => { AOS.init({ duration: 800 }); }, []);
+const ENT = () => {
+  useEffect(() => { AOS.init({ duration: 800, once: true }); }, []);
+
+  const doctors = [
+    { name: "Dr. Saeed Ahmed", day: "Tuesday & Friday", timing: "5pm to 7pm", contact: "0333-9876543" }
+  ];
 
   return (
-    <div className="bg-white min-h-screen py-20 px-6">
-      <div className="container mx-auto max-w-4xl">
-        <div className="flex items-center gap-4 mb-16" data-aos="fade-right">
-          <div className="h-1 w-12 bg-[#c2272c]"></div>
-          <h2 className="text-4xl font-black text-gray-900 italic uppercase">ENT Specialist</h2>
+    <div className="bg-white min-h-screen">
+      <header className="relative h-[350px] bg-gray-900 flex items-center justify-center">
+        <img src="/slider2.jpg" className="absolute inset-0 w-full h-full object-cover opacity-40" alt="ENT Specialist" />
+        <div className="relative z-10 text-center text-white">
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4" data-aos="fade-down">ENT Specialist</h1>
+          <div className="w-20 h-1 bg-[#c2272c] mx-auto" data-aos="zoom-in" data-aos-delay="300"></div>
         </div>
-        
-        <div className="bg-gray-900 rounded-[2.5rem] p-12 text-white relative overflow-hidden" data-aos="fade-up">
-          <div className="absolute right-[-20px] top-[-20px] opacity-10">
-            <Headset size={200} />
+      </header>
+
+      <section className="py-20 container mx-auto px-6 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {doctors.map((doc, i) => (
+          <div key={i} className="p-8 border border-gray-100 rounded-[2rem] hover:shadow-2xl transition-all group hover:border-[#c2272c]" data-aos="fade-up">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="p-4 bg-red-50 text-[#c2272c] rounded-2xl group-hover:bg-[#c2272c] group-hover:text-white transition-colors">
+                <User size={24} />
+              </div>
+              <h3 className="font-bold text-xl text-gray-900">{doc.name}</h3>
+            </div>
+            <div className="space-y-3 mb-8 text-gray-600 font-medium">
+              <p className="flex items-center gap-2"><Calendar size={18} className="text-[#c2272c]"/> {doc.day}</p>
+              <p className="flex items-center gap-2"><Clock size={18} className="text-[#c2272c]"/> {doc.timing}</p>
+            </div>
+            <a href={`tel:${doc.contact}`} className="flex items-center justify-center gap-2 w-full py-4 bg-[#c2272c] text-white rounded-2xl font-bold hover:bg-gray-900 transition-all">
+              <Phone size={18}/> {doc.contact}
+            </a>
           </div>
-          <h3 className="text-3xl font-bold mb-2">Dr. Abdul Ghaffar Jamali [cite: 25]</h3>
-          <p className="text-[#c2272c] font-black mb-8">Monday, Tuesday, Wednesday [cite: 25]</p>
-          <div className="text-xl text-gray-400 mb-10">
-            Timing: <span className="text-white">10:30am to 12:pm [cite: 25]</span>
-          </div>
-          <a href="tel:0333-7558627" className="text-2xl font-mono font-bold flex items-center gap-3 hover:text-[#c2272c] transition-colors">
-            <Phone /> 0333-7558627 [cite: 25]
-          </a>
-        </div>
-      </div>
+        ))}
+      </section>
     </div>
   );
 };
 
-export default ENTSpecialist;
+export default ENT;
