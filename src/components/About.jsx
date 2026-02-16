@@ -124,8 +124,8 @@ const AboutBody = () => {
               { val: "100%", label: "Community Impact", icon: <Heart size={28} /> }
             ].map((item, idx) => (
               <div key={idx} className="text-center group" data-aos="fade-up" data-aos-delay={idx * 100}>
-                <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-white/10 group-hover:bg-[#c2272c] transition-all">
-                  <div className="text-[#c2272c] group-hover:text-white transition-colors">
+                <div className="w-16 h-16 bg-[#c2272c] rounded-2xl flex items-center justify-center mx-auto mb-4 border border-white/10 group-hover:bg-white/5 transition-all">
+                  <div className="text-white group-hover:text-[#c2272c] transition-colors">
                     {item.icon}
                   </div>
                 </div>
@@ -147,10 +147,10 @@ const AboutBody = () => {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { name: "Dr. Ahmed Memon", role: "Chairman", img: "doc1.jpeg" },
-              { name: "Mr. Yusuf Ibrahim", role: "Vice Chairman", img: "doc2.jpeg" },
-              { name: "Dr. Fatima Khan", role: "Secretary", img: "doc3.jpeg" },
-              { name: "Mr. Hassan Ali", role: "Treasurer", img: "doc4.jpeg" }
+              { name: "Dr. Ahmed Memon", role: "Chairman", img: "doc1.png" },
+              { name: "Mr. Yusuf Ibrahim", role: "Vice Chairman", img: "doc2.png" },
+              { name: "Dr. Fatima Khan", role: "Secretary", img: "doc3.png" },
+              { name: "Mr. Hassan Ali", role: "Treasurer", img: "doc4.png" }
             ].map((director, idx) => (
               <div key={idx} className="group text-left" data-aos="fade-up" data-aos-delay={idx * 150}>
                 <div className="relative mb-5 aspect-[4/5] rounded-3xl overflow-hidden bg-gray-100 shadow-md">

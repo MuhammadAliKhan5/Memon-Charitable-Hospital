@@ -7,16 +7,13 @@ function App() {
   return (
     <div className="app-container">
       <Header />
-      
       <main>
-        {/* This Outlet is where index.jsx or other pages will appear */}
         <Outlet />
       </main>
-
       <WhatsAppButton />
       <Footer />
     </div>
   );
 }
- 
+
 export default App;

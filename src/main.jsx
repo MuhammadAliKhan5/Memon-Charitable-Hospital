@@ -9,8 +9,6 @@ import CareerPage from './components/CareerPage.jsx';
 import ContactPage from './components/ContactPage.jsx';
 import NewsEventsPage from './components/NewsEventsPage.jsx';
 import GalleryPage from './components/GalleryPage.jsx';
-
-// Specialty Components
 import GeneralPhysician from './components/GeneralPhysician.jsx';
 import GeneralSurgeon from './components/GeneralSurgeon.jsx';
 import Gestroenterologist from './components/Gestroenterologist.jsx';
@@ -40,8 +38,6 @@ const router = createBrowserRouter([
       { path: "contact", element: <ContactPage /> },
       { path: "events", element: <NewsEventsPage /> },
       { path: "gallery", element: <GalleryPage /> },
-
-      // Specialty Routes
       { path: "speciality/general-physician", element: <GeneralPhysician /> },
       { path: "speciality/general-surgeon", element: <GeneralSurgeon /> },
       { path: "speciality/gestroenterologist", element: <Gestroenterologist /> },
