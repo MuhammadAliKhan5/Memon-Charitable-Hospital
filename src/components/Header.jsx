@@ -98,7 +98,7 @@ const Header = () => {
                   </div>
                 </div>
 
-                <Link to="/events" className="font-bold text-gray-700 hover:text-[#c2272c] transition-colors text-sm uppercase tracking-wide">News</Link>
+                <Link to="/events" className="font-bold text-gray-700 hover:text-[#c2272c] transition-colors text-sm uppercase tracking-wide">News & Events</Link>
                 <Link to="/gallery" className="font-bold text-gray-700 hover:text-[#c2272c] transition-colors text-sm uppercase tracking-wide">Gallery</Link>
                 <Link to="/careers" className="font-bold text-gray-700 hover:text-[#c2272c] transition-colors text-sm uppercase tracking-wide">Career</Link>
                 <Link to="/contact" className="font-bold text-gray-700 hover:text-[#c2272c] transition-colors text-sm uppercase tracking-wide">Contact</Link>
