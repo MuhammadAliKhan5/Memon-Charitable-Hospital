@@ -7,8 +7,7 @@ import {
 const Footer = () => {
   const links = [
     { name: "About", href: "/about" },
-    { name: "Specialities", href: "/doctors" }, 
-    { name: "Departments", href: "/departments" },
+    { name: "Specialities", href: "/speciality/general-physician" }, 
     { name: "Careers", href: "/careers" },
     { name: "Contact Us", href: "/contact" }
   ];
