@@ -1,213 +1,126 @@
 import React from 'react';
 import { 
-  HeartPulse, Heart, Droplets, Stethoscope, Pill, 
-  MapPin, Phone, Mail, Send, ArrowRight,
-  Facebook, Twitter, Instagram, Youtube 
+  MapPin, Phone, Mail, ArrowRight,
+  Facebook, Instagram, Youtube 
 } from 'lucide-react';
 
 const Footer = () => {
-  const quickLinks = [
-    "About Us",
-    "Our Doctors", 
-    "Departments",
-    "Careers",
-    "Contact Us"
-  ];
-
-  const services = [
-    { icon: <HeartPulse size={18} />, name: "Emergency Services" },
-    { icon: <Heart size={18} />, name: "Cardiac Care" },
-    { icon: <Droplets size={18} />, name: "Dialysis Center" },
-    { icon: <Stethoscope size={18} />, name: "ICU & OT" },
-    { icon: <Pill size={18} />, name: "Pharmacy" }
+  const links = [
+    { name: "About", href: "/about" },
+    { name: "Specialities", href: "/doctors" }, 
+    { name: "Departments", href: "/departments" },
+    { name: "Careers", href: "/careers" },
+    { name: "Contact Us", href: "/contact" }
   ];
 
   const socialLinks = [
-    { icon: <Facebook size={18} />, href: "#" },
-    { icon: <Twitter size={18} />, href: "#" },
-    { icon: <Instagram size={18} />, href: "#" },
-    { icon: <Youtube size={18} />, href: "#" }
+    { icon: <Facebook size={20} />, href: "https://www.facebook.com/memoncharitablehospitalhyd" },
+    { icon: <Instagram size={20} />, href: "https://instagram.com/yourpage" },
+    { icon: <Youtube size={20} />, href: "https://youtube.com/yourpage" }
   ];
 
   return (
-    <footer className="bg-gray-900 text-gray-400">
+    <footer className="bg-gray-900 text-gray-400 pt-16 pb-12">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Top Section */}
-        <div className="py-8 border-b border-gray-800">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="text-center md:text-left">
-              <h2 className="text-2xl font-bold text-white mb-1">Memon Charitable Hospital</h2>
-              <p className="text-sm">Serving Since 1954</p>
-            </div>
-
-            {/* Newsletter */}
-            <div className="w-full md:w-auto">
-              <div className="text-center md:text-right">
-                <p className="text-white font-medium mb-3 text-sm">Stay Updated</p>
-                <div className="flex flex-col sm:flex-row gap-2">
-                  <input 
-                    type="email" 
-                    placeholder="Enter your email"
-                    className="px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#c2272c] text-sm w-full sm:w-64"
-                  />
-                  <button className="bg-[#c2272c] text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700 transition-colors duration-300 text-sm inline-flex items-center justify-center gap-2">
-                    <Send size={16} />
-                    Subscribe
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Main Footer Content */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 py-10">
-          {/* Hospital Info */}
-          <div>
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-red-900/30 rounded-lg flex items-center justify-center">
-                <HeartPulse size={24} className="text-red-400" />
+        
+        {/* Main Footer Content - 3 Column Grid */}
+        <div className="grid md:grid-cols-3 gap-12 mb-12">
+          
+          {/* Column 1: Hospital Info & Logo */}
+          <div className="space-y-6">
+            <div className="flex items-center gap-4">
+              {/* Logo Container - Added bg-white and padding to make the logo pop */}
+              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center p-2 shadow-lg overflow-hidden flex-shrink-0">
+                <img 
+                  src="/hospital-logo.png" 
+                  alt="MCH Logo" 
+                  className="w-full h-full object-contain" 
+                />
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-white">Quality Care</h3>
-                <p className="text-sm">70+ Years of Service</p>
+                <h2 className="text-xl font-bold text-white leading-tight">Memon Charitable<br/>Hospital</h2>
+                <p className="text-[10px] uppercase tracking-widest text-[#c2272c] font-bold">Serving Since 1954</p>
               </div>
             </div>
 
-            <p className="text-sm mb-6 leading-relaxed">
+            <p className="text-sm leading-relaxed">
               Providing exceptional healthcare services to our community for over 70 years with
-              compassionate care and advanced technology.
+              compassionate care and advanced medical technology.
             </p>
 
-            <div className="flex gap-3">
+            {/* Social Icons with Redirection */}
+            <div className="flex gap-4">
               {socialLinks.map((social, index) => (
                 <a 
                   key={index}
                   href={social.href}
-                  className="w-10 h-10 bg-gray-800 hover:bg-[#c2272c] rounded-lg flex items-center justify-center transition-colors duration-300"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-gray-800 hover:bg-[#c2272c] text-white rounded-lg flex items-center justify-center transition-all duration-300 hover:-translate-y-1"
                 >
-                  {React.cloneElement(social.icon, {
-                    className: "w-4 h-4 text-white"
-                  })}
+                  {social.icon}
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-white font-semibold text-lg mb-6 pb-3 border-b border-gray-800">
-              Quick Links
+          {/* Column 2: Links */}
+          <div className="md:pl-10">
+            <h4 className="text-white font-semibold text-lg mb-6 pb-2 border-b-2 border-[#c2272c] inline-block">
+              Links
             </h4>
-            <ul className="space-y-3">
-              {quickLinks.map((link, index) => (
+            <ul className="space-y-4">
+              {links.map((link, index) => (
                 <li key={index}>
                   <a 
-                    href="#" 
-                    className="text-sm hover:text-white transition-colors duration-300 flex items-center gap-2"
+                    href={link.href} 
+                    className="text-sm hover:text-white transition-colors duration-300 flex items-center gap-2 group"
                   >
-                    <ArrowRight size={14} className="text-[#c2272c]" />
-                    <span>{link}</span>
+                    <ArrowRight size={14} className="text-[#c2272c] group-hover:translate-x-1 transition-transform" />
+                    <span>{link.name}</span>
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Column 3: Contact */}
           <div>
-            <h4 className="text-white font-semibold text-lg mb-6 pb-3 border-b border-gray-800">
-              Our Services
+            <h4 className="text-white font-semibold text-lg mb-6 pb-2 border-b-2 border-[#c2272c] inline-block">
+              Contact
             </h4>
-            <ul className="space-y-3">
-              {services.map((service, index) => (
-                <li key={index}>
-                  <a 
-                    href="#" 
-                    className="text-sm hover:text-white transition-colors duration-300 flex items-center gap-2"
-                  >
-                    {React.cloneElement(service.icon, {
-                      className: "w-4 h-4 text-[#c2272c]"
-                    })}
-                    <span>{service.name}</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+            <div className="space-y-5">
+              <div className="flex items-start gap-4">
+                <MapPin size={20} className="text-[#c2272c] flex-shrink-0 mt-1" />
+                <p className="text-sm leading-snug">
+                  Nishat Chowk, Domanwa Road,<br />
+                  Hyderabad, Pakistan
+                </p>
+              </div>
 
-          {/* Contact Info */}
-          <div>
-            <h4 className="text-white font-semibold text-lg mb-6 pb-3 border-b border-gray-800">
-              Contact Info
-            </h4>
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <div className="w-10 h-10 bg-red-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <MapPin size={18} className="text-red-400" />
-                </div>
-                <div>
-                  <p className="text-white font-medium text-sm mb-1">Address</p>
-                  <p className="text-xs">
-                    Nishat Chowk, Domanwa Road,<br />
-                    Hyderabad, Pakistan
-                  </p>
+              <div className="flex items-start gap-4">
+                <Phone size={20} className="text-[#c2272c] flex-shrink-0 mt-1" />
+                <div className="text-sm">
+                  <a href="tel:03197822734" className="hover:text-white block transition">0319-7822734</a>
+                  <a href="tel:0221234567" className="hover:text-white block transition">022-1234567</a>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3">
-                <div className="w-10 h-10 bg-red-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Phone size={18} className="text-red-400" />
-                </div>
-                <div>
-                  <p className="text-white font-medium text-sm mb-1">Phone</p>
-                  <p className="text-xs">
-                    <a href="tel:03197822734" className="hover:text-white transition">0319-7822734</a><br />
-                    <a href="tel:0221234567" className="hover:text-white transition">022-1234567</a>
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <div className="w-10 h-10 bg-red-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <Mail size={18} className="text-red-400" />
-                </div>
-                <div>
-                  <p className="text-white font-medium text-sm mb-1">Email</p>
-                  <p className="text-xs">
-                    <a href="mailto:hospitalmemoncharitable@gmail.com" className="hover:text-white transition break-all">
-                      hospitalmemoncharitable@gmail.com
-                    </a>
-                  </p>
-                </div>
+              <div className="flex items-start gap-4">
+                <Mail size={20} className="text-[#c2272c] flex-shrink-0 mt-1" />
+                <a href="mailto:hospitalmemoncharitable@gmail.com" className="text-sm hover:text-white transition break-all">
+                  hospitalmemoncharitable@gmail.com
+                </a>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Section */}
-        <div className="py-6 border-t border-gray-800">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-xs text-center md:text-left">
-              © {new Date().getFullYear()} Memon Charitable Hospital. All rights reserved.
-            </p>
-
-            <div className="flex flex-wrap justify-center gap-4 text-xs">
-              <a href="#" className="hover:text-white transition">
-                Privacy Policy
-              </a>
-              <a href="#" className="hover:text-white transition">
-                Terms of Service
-              </a>
-              <a href="#" className="hover:text-white transition">
-                Sitemap
-              </a>
-              <button className="bg-[#c2272c] text-white px-3 py-1.5 rounded text-xs hover:bg-red-700 transition-colors duration-300 inline-flex items-center gap-1.5">
-                <Heart size={12} />
-                Donate
-              </button>
-            </div>
-          </div>
+        {/* Bottom Section: Centered Copyright */}
+        <div className="pt-8 border-t border-gray-800 text-center">
+          <p className="text-xs text-gray-500">
+            © {new Date().getFullYear()} Memon Charitable Hospital Hyderabad. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom'; // 1. Import Link
 
 const ExpertBanner = () => {
   // Array containing 4 images for the background
@@ -69,10 +70,14 @@ const ExpertBanner = () => {
               Our team of highly qualified doctors and healthcare specialists are committed to providing compassionate, personalized care.
             </p>
 
-            {/* CTA Button */}
-            <button className="flex items-center gap-2 bg-[#c2272c] hover:bg-[#a11f23] text-white px-8 py-3 rounded-full font-bold transition-all duration-300">
-              View More <ArrowRight size={18} />
-            </button>
+            {/* 2. Changed button to Link for redirection */}
+            <Link 
+              to="/about" 
+              className="inline-flex items-center gap-2 bg-[#c2272c] hover:bg-[#a11f23] text-white px-8 py-3 rounded-full font-bold transition-all duration-300 group/btn"
+            >
+              View More 
+              <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
+            </Link>
           </div>
         </div>
       </div>

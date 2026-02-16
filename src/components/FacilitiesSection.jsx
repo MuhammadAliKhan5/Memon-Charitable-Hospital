@@ -1,6 +1,22 @@
+import React, { useEffect } from 'react';
 import { Activity, Pill, Heart, Scissors, FlaskConical, Droplets, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const FacilitiesSection = () => {
+  useEffect(() => {
+    AOS.init({ duration: 800, once: true });
+  }, []);
+
+  // Logic to force scroll to top when clicking redirect buttons
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' // Optional: 'smooth' for a nice slide, 'instant' for a jump
+    });
+  };
+
   const facilities = [
     {
       icon: <Activity size={28} />,
@@ -35,10 +51,11 @@ const FacilitiesSection = () => {
   ];
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16" data-aos="fade-up">
           <div className="inline-flex items-center gap-3 mb-4">
             <div className="w-12 h-1.5 bg-[#c2272c] rounded-full"></div>
             <span className="text-[#c2272c] font-bold uppercase tracking-wider text-base">Hospital Facilities</span>
@@ -55,9 +72,11 @@ const FacilitiesSection = () => {
           {facilities.map((facility, index) => (
             <div 
               key={index} 
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 hover:border-[#c2272c]/30 group hover:-translate-y-1"
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
+              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-[#c2272c]/30 group hover:-translate-y-1"
             >
-              <div className="w-20 h-20 bg-gradient-to-br from-red-50 to-red-100 rounded-2xl flex items-center justify-center text-[#c2272c] mb-6 mx-auto group-hover:bg-gradient-to-br group-hover:from-[#c2272c] group-hover:to-[#ff6b6b] group-hover:text-white transition-all duration-300">
+              <div className="w-20 h-20 bg-gradient-to-br from-red-50 to-red-100 rounded-2xl flex items-center justify-center text-[#c2272c] mb-6 mx-auto group-hover:bg-[#c2272c] group-hover:text-white transition-all duration-300">
                 {facility.icon}
               </div>
               
@@ -67,22 +86,30 @@ const FacilitiesSection = () => {
               </p>
               
               <div className="text-center">
-                <button className="text-[#c2272c] text-sm font-semibold hover:text-red-700 transition-colors duration-300 inline-flex items-center gap-1 group-hover:gap-2">
+                <Link 
+                  to="/about" 
+                  onClick={scrollToTop} // Scroll logic added here
+                  className="text-[#c2272c] text-sm font-semibold hover:text-red-700 transition-colors duration-300 inline-flex items-center gap-1 group-hover:gap-2"
+                >
                   Learn more
-                  <ChevronRight size={16} className="opacity-0 group-hover:opacity-100 transform -translate-x-1 group-hover:translate-x-0 transition-all duration-300" />
-                </button>
+                  <ChevronRight size={16} className="transform translate-x-0 transition-all duration-300" />
+                </Link>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Button */}
-        <div className="text-center mt-16">
-          <button className="group bg-gradient-to-r from-[#c2272c] to-[#ff6b6b] text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center gap-3 text-lg">
+        {/* Main CTA Button */}
+        <div className="text-center mt-16" data-aos="zoom-in">
+          <Link 
+            to="/about" 
+            onClick={scrollToTop} // Scroll logic added here
+            className="group bg-gradient-to-r from-[#c2272c] to-[#ff6b6b] text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center gap-3 text-lg"
+          >
             <FlaskConical size={22} />
             <span>Explore All Facilities</span>
-            <ChevronRight size={20} className="opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
-          </button>
+            <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform duration-300" />
+          </Link>
         </div>
       </div>
     </section>
